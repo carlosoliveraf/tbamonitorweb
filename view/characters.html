@@ -1,0 +1,39 @@
+<h2>Characters</h2>
+
+<div ng-show="characters.length > 0">
+	<table border="1">
+		<tr>
+			<th>Name</th>
+			<th>Level</th>
+			<th>Stamina</th>
+			<th>Vocation</th>
+
+			<th></th>
+		</tr>
+		<tr ng-repeat="character in characters">
+			<td>{{character.name}}</td>
+			<td>{{character.level}}</td>
+			<td>{{character.stamina | date:'HH:mm'}}</td>
+			<td>{{character.vocation}}</td>
+			<td><button ng-click="eraseCharacter(character)">Erase Character</button></td>
+		</tr>
+	</table>
+</div>
+<br/>
+<form name="characterForm">
+	<input type="text" ng-model="character.name" name="name" placeholder="Character Name" ng-required="true"/>
+	<select ng-model="character.vocation" name="vocation" ng-options="vocation for vocation in vocations" ng-required="true">
+		<option value="">Select the vocation</option>
+	</select>
+	<input type="text" ng-model="character.level" name="level" placeholder="Level" ng-required="true"/>
+	<button ng-click="createCharacter(character)" ng-disabled="characterForm.$invalid">Create Character</button>
+</form>
+	<div ng-show="characterForm.name.$invalid && characterForm.name.$dirty">
+		Type a name!
+	</div>
+	<div ng-show="characterForm.vocation.$invalid && characterForm.vocation.$dirty">
+		Select characters vocation
+	</div>
+	<div ng-show="characterForm.level.$error.required && characterForm.level.$dirty">
+		Type characters level.
+	</div>
