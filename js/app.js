@@ -1,1 +1,1 @@
-angular.module("tbamonitorweb", ["ngRoute"]);
+angular.module("tbamonitorweb", ["ngRoute", "angular.morris-chart"]);
